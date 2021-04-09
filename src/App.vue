@@ -15,12 +15,22 @@ export default {
 </script>
 
 <style lang="scss">
-
-html {
-  width: 100%;
-  height: 100%;
+@font-face {
+  font-family: FredokaOne;
+  src: url('./assets/fonts/FredokaOne-Regular.ttf');
 }
 
+@font-face {
+  font-family: SourceSansPro-Bold;
+  src: url('./assets/fonts/SourceSansPro-Bold.ttf');
+}
+
+@font-face {
+  font-family: SourceSansPro-Semi;
+  src: url('./assets/fonts/SourceSansPro-SemiBold.ttf');
+}
+
+html,
 body {
   width: 100%;
   height: 100%;
@@ -31,11 +41,9 @@ body {
   display: block;
   text-align: center;
   font-size: 1.4rem;
-  color: #2c3e50;
-  background: linear-gradient(45deg, #010101 0%, #101010 40%, #101a1d 100%);
+  color: #ffffff;
+  background-color: #000000;
   height: 100%;
-  width: 100%;
-  min-width: 375px;
 }
 
 a:link,
@@ -52,13 +60,8 @@ a:visited {
 }
 
 .app-wrapper {
-  position: relative;
+  min-width: 375px;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: minmax(375px, 1240px);
-  grid-template-rows: 1fr;
-  justify-content: center;
-  padding: 20px;
 }
 </style>
