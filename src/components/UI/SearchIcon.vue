@@ -1,12 +1,14 @@
 <!-- eslint-disable max-len -->
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-    <path d="M0,0H30V30H0Z" fill="none" />
-    <path
-      d="M18.694,16.811H17.7l-.352-.339a8.184,8.184,0,1,0-.879.879l.339.352v.992l5.336,5.336a1.323,1.323,0,0,0,1.871-1.871Zm-7.533,0a5.65,5.65,0,1,1,5.65-5.65A5.642,5.642,0,0,1,11.161,16.811Z"
-      transform="translate(0.766 0.766)"
-      fill="#fcfcfc"
-    />
+  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+    <g transform="translate(0)">
+      <path d="M0,0H21V21H0Z" fill="none" />
+      <path
+        d="M18.4,16.542h-.973l-.345-.332a8.031,8.031,0,1,0-.862.862l.333.345v.973l5.235,5.232a1.3,1.3,0,0,0,1.835-1.834Zm-7.391,0A5.54,5.54,0,1,1,16.55,11,5.534,5.534,0,0,1,11.007,16.542Z"
+        transform="translate(-3 -2.999)"
+        fill="#fcfcfc"
+      />
+    </g>
   </svg>
 </template>
 
