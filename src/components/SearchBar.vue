@@ -4,13 +4,7 @@
       <div class="input-bar__icon">
         <SearchIcon />
       </div>
-      <input
-        v-model="steamInput"
-        type="text"
-        class="input-bar__search"
-        spellcheck="false"
-        placeholder="Your profile url, vanityid or steamid..."
-      />
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -20,11 +14,6 @@ import SearchIcon from '@/components/UI/SearchIcon.vue';
 
 export default {
   name: 'SearchBar',
-  data() {
-    return {
-      steamInput: ''
-    };
-  },
   components: {
     SearchIcon
   }
@@ -44,19 +33,17 @@ export default {
     flex-direction: row;
     align-items: center;
     height: 47px;
-    // border-radius: 5px;
+    border-radius: 2px;
     background: transparent;
     border: 3px solid #f9d132;
     box-shadow: 0px 0px 6px #ffd500;
     &__icon {
       padding-left: 12px;
-      height: 21px
+      height: 21px;
     }
     &__search {
       padding-left: 15px;
       padding-right: 50px;
-      background-color: none;
-      color: #ffffff;
       background: transparent;
       outline: none;
       width: 100%;
@@ -65,7 +52,7 @@ export default {
       border: none;
       font-family: 'SourceSansPro-Bold';
       font-size: 1.6rem;
-      color: #d8d8d8;
+      color: #ffffff;
     }
     ::-webkit-input-placeholder {
       /* Chrome/Opera/Safari */
