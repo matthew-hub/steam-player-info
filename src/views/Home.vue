@@ -1,7 +1,7 @@
 <template>
   <div class="home-content">
-    <AppHeader />
-    <AppMain />
+    <AppHeader @emitHandleInput="handleInputData" />
+    <AppMain v-bind:playerData="player" />
     <AppFooter />
   </div>
 </template>
@@ -10,6 +10,7 @@
 // @ is an alias to /src
 import AppHeader from '@/components/layouts/AppHeader.vue';
 import AppMain from '@/components/layouts/AppMain.vue';
+import steamAPI from '@/API/steam-api';
 import AppFooter from '../components/layouts/AppFooter.vue';
 
 export default {
@@ -18,6 +19,44 @@ export default {
     AppHeader,
     AppMain,
     AppFooter
+  },
+
+  data() {
+    return {
+      player: {
+        basic: {},
+        bans: {},
+        isPlayerLoaded: false
+      }
+    };
+  },
+
+  methods: {
+    handleInputData(value) {
+      if (value.type === 'vanityID') {
+        steamAPI.resolveVanityURL(value.vanityID).then(() => {
+          this.getPlayerSummaries();
+        });
+      }
+      if (value.type === 'error') {
+        this.player.isPlayerLoaded = 'error';
+        this.player.error = value.message;
+      }
+      if (value.type === 'steamID') {
+        this.getPlayerSummaries();
+      }
+    },
+
+    getPlayerSummaries() {
+      steamAPI.getPlayerSummaries().then((player) => {
+        console.log('[steamAPI]:', steamAPI);
+        this.player.basic = { ...player };
+        return steamAPI.getPlayerBans().then((bans) => {
+          this.player.bans = { ...bans };
+          this.player.isPlayerLoaded = true;
+        });
+      });
+    }
   }
 };
 </script>
