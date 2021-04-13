@@ -39,7 +39,7 @@ body {
 #app {
   position: relative;
   display: block;
-  text-align: center;
+  // text-align: center;
   font-size: 1.4rem;
   color: #ffffff;
   background-color: #000000;
