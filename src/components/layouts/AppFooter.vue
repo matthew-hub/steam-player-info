@@ -20,5 +20,6 @@ export default {
   align-self: end;
   padding-top: 50px;
   display: block;
+  text-align: center;
 }
 </style>

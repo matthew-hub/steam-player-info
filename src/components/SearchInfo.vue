@@ -18,20 +18,21 @@ export default {
 
 <style lang="scss" scoped>
 .search-info {
+  padding-top: 30px;
   h3 {
     font-family: 'FredokaOne';
     font-size: 1.8rem;
 
     text-align: left;
     padding-left: 10px;
-    color: #d8d8d8;
+    color: #ffffff;
   }
   .search-info__items {
     padding-top: 5px;
     padding-right: 10px;
     overflow: hidden;
     position: relative;
-    font-family: 'SourceSansPro-Semi';
+    font-family: 'FredokaOne';
     font-size: 1.8rem;
     line-height: 3rem;
     text-align: left;
@@ -40,16 +41,15 @@ export default {
     flex-wrap: wrap;
 
     div {
+      cursor: pointer;
       margin-left: 10px;
-      // border-top-right-radius: 5px;
-      // border-bottom-right-radius: 5px;
       margin-top: 10px;
-      // margin-right: 10px;
       flex-shrink: 1;
       flex-grow: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      border-radius: 2px;
       border: 2px solid #f9d132;
       font-size: 1.5rem;
       padding-left: 10px;
