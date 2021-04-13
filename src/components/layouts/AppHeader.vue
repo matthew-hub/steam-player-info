@@ -4,6 +4,7 @@
     <AppInfo />
     <SearchBar>
       <input
+        ref="steamInput"
         v-model.trim="steamInput"
         type="text"
         class="input-bar__search"
@@ -38,18 +39,13 @@ export default {
     handleInput(e) {
       e.preventDefault();
       e.target.blur();
-      // e.targe.blur = 'none';
       const inputData = steamAPI.parseInputData(this.steamInput);
-      console.log('[inputData]:', inputData);
 
       this.$emit('emitHandleInput', inputData);
-      // this.steamInput = '';
-    },
-    sendInput() {
-      console.log('[aaa]:', this.steamInput);
-
-      this.$emit('created', this.steamInput);
     }
+  },
+  mounted() {
+    this.$refs.steamInput.focus();
   }
 };
 </script>
@@ -61,7 +57,6 @@ export default {
   grid-template-columns: auto;
   grid-template-rows: 1fr auto auto;
   padding-top: 20%;
-  // padding-top: 160px;
   justify-items: center;
 }
 </style>
