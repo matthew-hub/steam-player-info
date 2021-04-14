@@ -3,15 +3,20 @@
     <AppTitle />
     <AppInfo />
     <SearchBar>
-      <input
-        ref="steamInput"
-        v-model.trim="steamInput"
-        type="text"
-        class="input-bar__search"
-        spellcheck="false"
-        placeholder="Your profile url, vanityid or steamid"
-        @keyup.enter="handleInput"
-      />
+      <template v-slot:input>
+        <input
+          ref="steamInput"
+          v-model.trim="steamInput"
+          type="text"
+          class="input-bar__search"
+          spellcheck="false"
+          placeholder="Your profile url, vanityid or steamid"
+          @keyup.enter="handleInput"
+        />
+      </template>
+      <template v-slot:player-status>
+        <div class="player-status" v-bind:class="{ loading: playerStatus === 'loading...' }">{{ playerStatus }}</div>
+      </template>
     </SearchBar>
   </header>
 </template>
@@ -23,6 +28,11 @@ import SearchBar from '@/components/SearchBar.vue';
 import steamAPI from '@/API/steam-api';
 
 export default {
+  props: {
+    playerStatus: {
+      type: String
+    }
+  },
   name: 'AppHeader',
   data() {
     return {
@@ -40,7 +50,6 @@ export default {
       e.preventDefault();
       e.target.blur();
       const inputData = steamAPI.parseInputData(this.steamInput);
-
       this.$emit('emitHandleInput', inputData);
     }
   },

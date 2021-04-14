@@ -1,6 +1,6 @@
 <template>
   <div class="home-content">
-    <AppHeader @emitHandleInput="handleInputData" />
+    <AppHeader @emitHandleInput="handleInputData" v-bind:playerStatus="player.status" />
     <AppMain v-bind:playerData="player" />
     <AppFooter />
   </div>
@@ -26,21 +26,28 @@ export default {
       player: {
         basic: {},
         bans: {},
-        isPlayerLoaded: false
+        isPlayerLoaded: false,
+        status: ''
       }
     };
   },
 
   methods: {
     handleInputData(value) {
+      this.player.status = 'loading...';
       if (value.type === 'vanityID') {
-        steamAPI.resolveVanityURL(value.vanityID).then(() => {
-          this.getPlayerSummaries();
+        steamAPI.resolveVanityURL(value.vanityID).then((data) => {
+          if (data.success !== 1) {
+            this.player.status = 'player not found';
+            this.player.isPlayerLoaded = false;
+            return this.player;
+          }
+          return this.getPlayerSummaries();
         });
       }
       if (value.type === 'error') {
-        this.player.isPlayerLoaded = 'error';
-        this.player.error = value.message;
+        this.player.isPlayerLoaded = false;
+        this.player.status = 'player not found';
       }
       if (value.type === 'steamID') {
         this.getPlayerSummaries();
@@ -48,13 +55,21 @@ export default {
     },
 
     getPlayerSummaries() {
-      steamAPI.getPlayerSummaries().then((player) => {
+      return steamAPI.getPlayerSummaries().then((player) => {
+        console.log('[player]:', player);
+
+        if (player !== undefined) {
+          this.player.basic = { ...player };
+          steamAPI.getPlayerBans().then((bans) => {
+            this.player.bans = { ...bans };
+            this.player.isPlayerLoaded = true;
+            this.player.status = '';
+          });
+          return;
+        }
+        this.player.isPlayerLoaded = false;
+        this.player.status = 'player not found';
         console.log('[steamAPI]:', steamAPI);
-        this.player.basic = { ...player };
-        return steamAPI.getPlayerBans().then((bans) => {
-          this.player.bans = { ...bans };
-          this.player.isPlayerLoaded = true;
-        });
       });
     }
   }

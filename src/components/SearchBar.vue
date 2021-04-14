@@ -4,8 +4,9 @@
       <div class="input-bar__icon">
         <SearchIcon />
       </div>
-      <slot></slot>
+      <slot name="input" />
     </div>
+    <slot name="player-status" />
   </div>
 </template>
 
@@ -23,6 +24,7 @@ export default {
 <style lang="scss" scoped>
 .search-bar {
   position: relative;
+  // overflow: hidden;
   padding-top: 20px;
   width: 100%;
   max-width: 600px;
@@ -70,6 +72,24 @@ export default {
       /* Firefox 18- */
       color: #d8d8d8;
     }
+  }
+
+  .player-status {
+    position: absolute;
+    max-width: 600px;
+    font-family: 'SourceSansPro-Bold';
+    font-size: 1.6rem;
+    padding: 10px;
+    padding-top: 20px;
+    left: 0;
+    width: 100%;
+    color: rgb(245, 41, 82);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+  }
+  .loading {
+    color: #f9d132;
   }
 }
 </style>
