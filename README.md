@@ -1,3 +1,9 @@
-# steam-player-info
+# Steam Player Info
 
-Basic Steam Player Info like: steamID. nickname, avatar, creation date
+Check your basic details like id, nickname, avatar, creation date.
+
+## Bulid with:
+
+- [Steam API Server](https://github.com/matthew-hub/steam-api-server)
+- [Steam API Client](https://github.com/matthew-hub/steam-api-client)
+- [Vue.js](https://vuejs.org/)
