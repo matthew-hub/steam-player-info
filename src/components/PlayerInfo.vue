@@ -1,19 +1,15 @@
 <!-- eslint-disable no-param-reassign -->
-<template>
+<template >
   <div class="player-box">
     <h2>Basic details:</h2>
-    <div class="player-info" v-if="playerData.isPlayerLoaded !== 'error'">
+    <div class="player-info">
       <div class="info-box" v-for="(value, name, index) in getPlayerInfo" v-bind:key="index">
         <div class="name">{{ name }}:</div>
         <div class="value-box">
-          <!-- <div class="tooltip" v-on:click="(e) => changeState(e)">copy to clipboard!</div> -->
           <div class="tooltip" v-on:click="(e) => copytToClipboard(e, value)">copy to clipboard!</div>
           <div class="value">{{ value }}</div>
         </div>
       </div>
-    </div>
-    <div v-else>
-      {{ playerData.error }}
     </div>
     <div class="player-bans">
       <div class="bans-box" v-for="(value, name, index) in getPlayerBans" v-bind:key="index">
